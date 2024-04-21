@@ -7,9 +7,16 @@
 //     // - Если переданы какие-либо другие параметры, то пустой ответ, код ответа 500
 
 const http = require("http");
+// const mongoose = require('mongoose');
+
 const hostname = "127.0.0.1";
 const port = 3003;
 const getUsers = require("./modules/users");
+
+// mongoose.connect('mongodb://localhost:27017/Backend_dev_4', err => {
+//   if(err) throw err;
+//   console.log('connected Mongo');
+// })
 
 const server = http.createServer((request, response) => {
   const ipAddress = "http://127.0.0.1";
