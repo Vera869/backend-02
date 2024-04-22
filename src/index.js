@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-//const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const userRouter = require('./routes/users');
 const booksRouter = require('./routes/books');
@@ -19,7 +19,7 @@ const app = express();
 
 
 
-//app.use(cors);
+app.use(cors());
 app.use(loggerOne);
 app.use(bodyParser.json());
 
