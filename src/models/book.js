@@ -11,7 +11,7 @@ const bookSchema = new mongoose.Schema({
     required: true,
     minLength: 2,
   },
-  date: {
+  relese: {
     type: Number,
     required: true,
     minLength: 2,
