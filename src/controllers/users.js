@@ -1,9 +1,9 @@
 const getUsers = (request, response) => {
-   //get users
+   response.status(200);
+   response.send("Get all users");
 };
 
-const getUser = (request, response) => {
-   //get user
+const getUserById = (request, response) => {
    console.log("get user by id");
    const { user_id } = request.params;
    response.status(200);
@@ -11,23 +11,27 @@ const getUser = (request, response) => {
 };
 
 const createUser = (request, response) => {
-   //create new user
    console.log("create user");
    response.status(201);
    response.send(request.body);
 };
 
 const updateUser = (request, response) => {
-   //update user
+   console.log("update user");
+   response.status(200);
+   response.send(request.body);
 };
 
 const deleteUser = (request, response) => {
-   //delete user
+   console.log("delete user");
+   const { user_id } = request.params;
+   response.status(200);
+   response.send(`user with id: ${user_id} is delete`);
 };
 
 module.exports = {
    getUsers,
-   getUser,
+   getUserById,
    createUser,
    updateUser,
    deleteUser

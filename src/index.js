@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const userRouter = require('./routes/users');
+const booksRouter = require('./routes/books');
 const loggerOne = require('./middleweare/loggerOne');
 
 dotenv.config();
@@ -14,14 +15,14 @@ const {
    API_URL = "127.0.0.1"
 } = process.env;
 
-app.use(cors);
-app.use(loggerOne);
+//app.use(cors);
+//app.use(loggerOne);
 app.use(bodyParser.json());
 
 
 app.get("/", (request, response) => {
    response.status(200);
-   response.send("Hello Everyone !!!");
+   response.send("Hello Everyone & Everywere!!!");
 })
 
 app.post("/", (request, response) => {
@@ -30,7 +31,7 @@ app.post("/", (request, response) => {
 })
 
 app.use(userRouter);
-
+app.use(booksRouter);
 app.listen(PORT, () => {
       console.log(`Сервер запущен по адресу http://${API_URL}:${PORT}/`);
     })
