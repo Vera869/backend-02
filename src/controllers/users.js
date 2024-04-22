@@ -1,7 +1,6 @@
 const User = require("../models/user");
 
 const getUsers = (request, response) => {
-  //Get all users
   return User.find({})
     .then((data) => {
       response.status(200).send(data);
@@ -37,7 +36,6 @@ const createUser = (request, response) => {
 };
 
 const updateUser = (request, response) => {
-  //Update user
   const { user_id } = request.params;
   return User.findByIdAndUpdate(user_id, { ...request.body })
     .then((user) => {
@@ -49,7 +47,6 @@ const updateUser = (request, response) => {
 };
 
 const deleteUser = (request, response) => {
-  //Delete user
   const { user_id } = request.params;
   return User.findByIdAndDelete(user_id, { ...request.body })
     .then((user) => {

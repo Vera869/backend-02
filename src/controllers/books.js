@@ -40,7 +40,6 @@
 const Book = require("../models/book");
 
 const getBooks = (request, response) => {
-  //Get all books
   return Book.find({})
     .then((data) => {
       response.status(200).send(data);
@@ -76,7 +75,6 @@ const createBook = (request, response) => {
 };
 
 const updateBook = (request, response) => {
-  //Update book
   const { book_id } = request.params;
   return Book.findByIdAndUpdate(book_id, { ...request.body })
     .then((book) => {
@@ -88,7 +86,6 @@ const updateBook = (request, response) => {
 };
 
 const deleteBook = (request, response) => {
-  //Delete book
   const { book_id } = request.params;
   return Book.findByIdAndDelete(book_id, { ...request.body })
     .then((book) => {
