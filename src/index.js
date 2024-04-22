@@ -1,13 +1,18 @@
 const express = require('express');
-
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const userRouter = require('./routes/users');
 const booksRouter = require('./routes/books');
 const loggerOne = require('./middleweare/loggerOne');
 
 dotenv.config();
+mongoose.connect('mongodb://localhost:27017/Backend_HW4').catch(
+  err => {
+    if(err) throw err;
+  }
+)
 const app = express();
 
 const {
@@ -22,7 +27,7 @@ app.use(bodyParser.json());
 
 app.get("/", (request, response) => {
    response.status(200);
-   response.send("Hello Everyone & Everywere!!!");
+   response.send("Hello Everyone!!!");
 })
 
 app.post("/", (request, response) => {
