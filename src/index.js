@@ -1,12 +1,36 @@
-const http = require('http');
+const express = require('express');
 
-const server = http.createServer((request, response) => {
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const userRouter = require('./routes/users');
+const loggerOne = require('./middleweare/loggerOne');
 
-    // Написать обработчик запроса:
-    // - Ответом на запрос `?hello=<name>` должна быть **строка** "Hello, <name>.", код ответа 200
-    // - Если параметр `hello` указан, но не передано `<name>`, то ответ **строка** "Enter a name", код ответа 400
-    // - Ответом на запрос `?users` должен быть **JSON** с содержимым файла `data/users.json`, код ответа 200
-    // - Если никакие параметры не переданы, то ответ **строка** "Hello, World!", код ответа 200
-    // - Если переданы какие-либо другие параметры, то пустой ответ, код ответа 500
+dotenv.config();
+const app = express();
 
-});
+const {
+   PORT = 3005,
+   API_URL = "127.0.0.1"
+} = process.env;
+
+app.use(cors);
+app.use(loggerOne);
+app.use(bodyParser.json());
+
+
+app.get("/", (request, response) => {
+   response.status(200);
+   response.send("Hello Everyone !!!");
+})
+
+app.post("/", (request, response) => {
+   response.status(200);
+   response.send("Hello from POST!!!");
+})
+
+app.use(userRouter);
+
+app.listen(PORT, () => {
+      console.log(`Сервер запущен по адресу http://${API_URL}:${PORT}/`);
+    })
